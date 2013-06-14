@@ -1,4 +1,4 @@
-require_relative 'cell'
+require_relative '../cell'
 
 describe Cell do
   it { should respond_to :state }

@@ -1,4 +1,4 @@
-require_relative 'grid'
+require_relative '../grid'
 
 describe Grid do
   context 'Methods' do
@@ -13,6 +13,18 @@ describe Grid do
       its(:cols) { should eq 5 }
       its(:rows) { should eq 3 }
     end
+  end
+
+  describe "querying positons" do
+    let(:test_grid) { Grid.new 5, 3 }
+
+    it 'correctly returns valid positions' do
+      test_grid.valid_position?( 5 , 3).should be_false
+      test_grid.valid_position?( 3, 2).should be_true
+      test_grid.valid_position?( 3, -1).should be_false
+    end
+
+
   end
 
   it 'rejects invalid dimensions' do
@@ -47,6 +59,17 @@ describe Grid do
         value.should be_zero
       end
     end
+  end
+
+  context "flattening and unflattening" do
+    subject { Grid.new(10, 9){ rand(9) } }
+
+    it 'flattens and unflattens correctly' do
+      expect {
+        subject.unflatten( subject.flatten )
+      }.to_not change(subject, :to_s)
+    end
+
   end
   
   context 'querying grid' do

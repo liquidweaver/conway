@@ -1,3 +1,7 @@
+# Cell, Joshua Weaver, 06/13/2013
+#
+# This class is a simple container, and enforces correct states for an
+# individual cell in a simulation of Conway's Game of Life.
 class Cell
   class StateInvalid < Exception; end
   VALID_STATES = [ :alive, :dead ]
